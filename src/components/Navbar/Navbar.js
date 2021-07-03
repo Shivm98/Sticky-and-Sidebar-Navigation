@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import links from "../../data/links";
 import { AiFillDingtalkCircle } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   const [navbarBG, setNavbarBG] = useState(false);
+  const [sidebarActive, setSidebarActive] = useState(false);
 
   const changeNavbarBG = () => {
     if (window.scrollY >= 80) {
@@ -22,7 +24,13 @@ const Navbar = () => {
         <div className="logo-container">
           <AiFillDingtalkCircle />
         </div>
-        <ul className="nav-links">
+        <div
+          className="toggle-btn"
+          onClick={() => setSidebarActive(!sidebarActive)}
+        >
+          <GiHamburgerMenu />
+        </div>
+        <ul className={sidebarActive ? "nav-links active" : "nav-links"}>
           {links.map((link) => (
             <li>
               <a href={link.url} className={link.cName}>

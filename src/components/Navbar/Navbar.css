@@ -7,14 +7,14 @@
   align-items: center;
   background-color: transparent;
   transition: all 0.4s;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .navbar.active {
   background-color: #fff;
   box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
 }
 
 .navbar .navbar-center {
@@ -25,6 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .navbar .navbar-center .logo-container {
@@ -34,6 +35,12 @@
 
   font-size: 5rem;
   color: var(--primary-color);
+}
+
+.navbar .navbar-center .toggle-btn {
+  font-size: 5rem;
+  color: var(--primary-color);
+  display: none;
 }
 
 .navbar .navbar-center .nav-links {
@@ -49,6 +56,25 @@
   color: var(--font-color-dark);
   text-transform: capitalize;
   font-weight: 300;
+  transition: all 0.4s;
+  position: relative;
+}
+
+.navbar .navbar-center .nav-links .nav-link::after {
+  content: "";
+  height: 2px;
+  width: 0%;
+  background-color: var(--primary-color);
+  display: block;
+  transition: all 0.4s;
+  position: absolute;
+  right: 0;
+  bottom: -20%;
+}
+
+.navbar .navbar-center .nav-links .nav-link:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 .navbar .navbar-center .nav-links .nav-btn {
@@ -56,4 +82,54 @@
   color: #fff;
   padding: 0.5rem 2rem;
   border-radius: 40px;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar .navbar-center .logo-container {
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    transform: translate(0%, -50%);
+    z-index: 100;
+  }
+
+  .navbar .navbar-center .toggle-btn {
+    font-size: 5rem;
+    color: var(--primary-color);
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translate(0%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+
+  .navbar .navbar-center .nav-links {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(252, 169, 169);
+    width: 100%;
+    position: fixed;
+    top: 8rem;
+    left: -100%;
+    transition: all 0.4s;
+    padding: 2rem 4rem;
+  }
+
+  .navbar .navbar-center .nav-links .nav-link {
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  .navbar .navbar-center .nav-links .nav-btn {
+    font-size: 2rem;
+    padding: 0.5rem 3rem;
+  }
+
+  .navbar .navbar-center .nav-links.active {
+    left: 0;
+  }
 }
